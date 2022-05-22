@@ -23,15 +23,15 @@ HTTP服务器的大体流程为：监听  ---->  连接  ---->  读HTTP请求  -
 
 #### 框架：
 
-![框架](D:\cpp_learning\myTinyWebserver\root\框架.jpg)
+![框架](https://github.com/yetao1121/myTinyWebServer/blob/main/root/framework.jpg)
 
 #### 实现效果：
 
-![注册登录](D:\cpp_learning\myTinyWebserver\root\注册登录.gif)
+![注册登录](https://github.com/yetao1121/myTinyWebServer/blob/main/root/login_register.gif)
 
-![访问图片视频](D:\cpp_learning\myTinyWebserver\root\访问图片视频.gif)
+![访问图片视频](https://github.com/yetao1121/myTinyWebServer/blob/main/root/visit_picture_vedio.gif)
 
-![image-20220522212155330](D:\cpp_learning\myTinyWebserver\root\日志.png)
+![日志](https://github.com/yetao1121/myTinyWebServer/blob/main/root/log.jpg)
 
 #### 最后
 
