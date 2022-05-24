@@ -23,7 +23,7 @@ HTTP服务器的大体流程为：监听  ---->  连接  ---->  读HTTP请求  -
 
 #### 框架：
 
-![框架](https://github.com/yetao1121/myTinyWebServer/blob/main/root/framework.jpg)
+![框架](https://github.com/yetao1121/myTinyWebServer/blob/main/root/framework.jpg?raw=true)
 
 #### 实现效果：
 登陆注册：
