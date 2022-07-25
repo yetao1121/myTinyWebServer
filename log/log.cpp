@@ -22,16 +22,16 @@ bool Log::init(const char* file_name, int close_log, int log_buf_size, int split
     struct tm my_tm = *sys_tm;
 
     const char* p = strrchr(file_name, '/'); /* 指向 fila_name 中最后一次出现 / 的位置 */
-    char log_full_name[256] = {0};
+    char log_full_name[512] = {0};
 
     if (p == nullptr) {
         /* p为空说明 filename 中没有 /， 将整个 file_name 写入 log_full_name */
-        snprintf(log_full_name, 255, "%d_%02d_%02d_%s", my_tm.tm_year + 1900, my_tm.tm_mon + 1, my_tm.tm_mday, file_name);
+        snprintf(log_full_name, 511, "%d_%02d_%02d_%s", my_tm.tm_year + 1900, my_tm.tm_mon + 1, my_tm.tm_mday, file_name);
     }
     else {
         strcpy(log_name, p + 1); /* 截取 / 之后的部分为 log_name */
         strncpy(dir_name, file_name, p - file_name + 1); /* 截取 / 之前的部分为 dir_name */
-        snprintf(log_full_name, 255, "%s%d_%02d_%02d_%s", dir_name, my_tm.tm_year + 1900, my_tm.tm_mon + 1, my_tm.tm_mday, log_name);
+        snprintf(log_full_name, 511, "%s%d_%02d_%02d_%s", dir_name, my_tm.tm_year + 1900, my_tm.tm_mon + 1, my_tm.tm_mday, log_name);
     }
 
     m_today = my_tm.tm_mday;
@@ -80,7 +80,7 @@ void Log::write_log(int level, const char* format, ...) {
 
     /* 新的一天或者是超过最大行数，需要分文件了 */
     if (m_today != my_tm.tm_mday || m_count % m_split_lines == 0) {
-        char new_log[256] = {0};
+        char new_log[512] = {0};
         fflush(m_fp); /* 避免文件流中还有残留的数据 */
         fclose(m_fp); /* 把原文件描述符（已写满或非今天）关闭 */
         char tail[16] = {0};
@@ -89,13 +89,13 @@ void Log::write_log(int level, const char* format, ...) {
 
         /* 如果 成员变量 m_today 不是今天， 说明这是今天第一次写入日志文件 */
         if (m_today != my_tm.tm_mday) {
-            snprintf(new_log, 255, "%s%s%s", dir_name, tail, log_name);
+            snprintf(new_log, 511, "%s%s%s", dir_name, tail, log_name);
             m_today = my_tm.tm_mday;
             m_count = 0;
         }
         /* 否则说明超过最大行了需要分文件 */
         else {
-            snprintf(new_log, 255, "%s%s%s.%lld", dir_name, tail, log_name, m_count / m_split_lines);
+            snprintf(new_log, 511, "%s%s%s.%lld", dir_name, tail, log_name, m_count / m_split_lines);
         }
         m_fp = fopen(new_log, "a");
     }
