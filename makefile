@@ -4,5 +4,5 @@ libs=main.cpp ./config/config.cpp ./http/http_conn.cpp ./lock/locker.cpp ./log/l
 $(target):$(libs)
 	$(CXX) -std=c++11 -I/usr/include/mysql -L/usr/lib64/mysql $^ -o $@ -lpthread -lmysqlclient
 
-clean
+clean:
 	rm -f myTinyWebserver
