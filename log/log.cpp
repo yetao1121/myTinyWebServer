@@ -31,7 +31,7 @@ bool Log::init(const char* file_name, int close_log, int log_buf_size, int split
     else {
         strcpy(log_name, p + 1); /* 截取 / 之后的部分为 log_name */
         strncpy(dir_name, file_name, p - file_name + 1); /* 截取 / 之前的部分为 dir_name */
-        snprintf(log_full_name, 255, "%s%d_%02d_%02d_%s", dir_name, my_tm.tm_year + 1990, my_tm.tm_mon + 1, my_tm.tm_mday, log_name);
+        snprintf(log_full_name, 255, "%s%d_%02d_%02d_%s", dir_name, my_tm.tm_year + 1900, my_tm.tm_mon + 1, my_tm.tm_mday, log_name);
     }
 
     m_today = my_tm.tm_mday;
